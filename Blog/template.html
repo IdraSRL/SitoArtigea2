@@ -10,7 +10,7 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="article">
-    <meta property="og:url" content="https://www.artigea.com/./blog/{{slug}}.html">
+    <meta property="og:url" content="https://www.artigea.it/blog/{{slug}}.html">
     <meta property="og:title" content="{{title}}">
     <meta property="og:description" content="{{description}}">
     <meta property="og:image" content="../assets/./blog/{{slug}}-og.jpg">
@@ -20,7 +20,7 @@
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.artigea.com/./blog/{{slug}}.html">
+    <meta property="twitter:url" content="https://www.artigea.it/blog/{{slug}}.html">
     <meta property="twitter:title" content="{{title}}">
     <meta property="twitter:description" content="{{description}}">
     <meta property="twitter:image" content="../assets/./blog/{{slug}}-og.jpg">
@@ -29,10 +29,11 @@
 <link rel="shortcut icon" href="../img/logo.svg" type="image/x-icon">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://www.artigea.com/./blog/{{slug}}.html">
+    <link rel="canonical" href="https://www.artigea.it/blog/{{slug}}.html">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="../css/main.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">    <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/components.css">
     <link rel="stylesheet" href="../css/blog.css">
 
@@ -55,25 +56,25 @@
         "@type": "BlogPosting",
         "headline": "{{title}}",
         "description": "{{description}}",
-        "image": "https://www.artigea.com/assets/./blog/{{slug}}-cover.jpg",
+        "image": "https://www.artigea.it/blog/{{slug}}-cover.jpg",
         "author": {
             "@type": "Organization",
             "name": "Artigea s.r.l.",
-            "url": "https://www.artigea.com"
+            "url": "https://www.artigea.it"
         },
         "publisher": {
             "@type": "Organization",
             "name": "Artigea s.r.l.",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.artigea.com/assets/logo-artigea.svg"
+                "url": "https://www.artigea.it/assets/logo.svg"
             }
         },
         "datePublished": "{{published_date}}",
         "dateModified": "{{modified_date}}",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https://www.artigea.com/./blog/{{slug}}.html"
+            "@id": "https://www.artigea.it/blog/{{slug}}.html"
         },
         "articleSection": "{{category}}",
         "keywords": "{{keywords}}"
@@ -149,7 +150,7 @@
                     <span class="article-reading-time">{{reading_time}} min di lettura</span>
                 </div>
                 <h1 class="article-title">{{title}}</h1>
-                <p class="article-excerpt">{{excerpt}}</p>
+
                 
                 <!-- Featured Image -->
                 <div class="article-image">
@@ -278,18 +279,23 @@
             <div class="footer__content">
                 <div class="footer__brand">
                     <img src="../img/LogoCompleto.png" alt="Logo Artigea s.r.l." class="footer__logo">
-                    <p>Servizi di pulizia professionali a Pisa e provincia</p>
-                    
-                    <!-- Social Media Links -->
+                                        <p>Servizi di pulizia professionali a Pisa e provincia</p>
+                   
+ <!-- Social Media Links -->
                     <div class="footer__social">
-                        <a href="https://www.instagram.com/artigea_srl/" target="_blank" rel="noopener noreferrer" aria-label="Seguici su Instagram">
-                            <span>📷</span>
+                        <a href="https://www.instagram.com/artigeasrl/" target="_blank" rel="noopener noreferrer" aria-label="Seguici su Instagram">
+                            <span style="color: #C32AA3;">
+  <i class="fab fa-instagram"></i>
+</span>
                         </a>
-                        <a href="https://www.facebook.com/artigea.srl" target="_blank" rel="noopener noreferrer" aria-label="Seguici su Facebook">
-                            <span>📘</span>
-                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61578224947960" target="_blank" rel="noopener noreferrer" aria-label="Seguici su Facebook">
+                            <span style="color: #1877F2;">
+  <i class="fab fa-facebook-f"></i>
+</span>                        </a>
                         <a href="https://www.linkedin.com/company/artigea-srl" target="_blank" rel="noopener noreferrer" aria-label="Collegati su LinkedIn">
-                            <span>💼</span>
+                            <span style="color: #0A66C2;">
+  <i class="fab fa-linkedin-in"></i>
+</span>
                         </a>
                     </div>
                 </div>
