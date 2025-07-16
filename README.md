@@ -44,7 +44,7 @@ Sistema a 8px con variabili CSS personalizzate per consistenza.
 │   ├── main.js           # Funzionalità principali
 │   └── cookie-consent.js # Gestione cookie e GDPR
 ├── assets/
-│   ├── logo-artigea.svg         # Logo aziendale
+│   ├── logo.svg         # Logo aziendale
 │   ├── favicon-*.png            # Favicon varie dimensioni
 │   ├── hero-cleaning.jpg        # Immagine hero
 │   ├── team-placeholder.jpg     # Foto team
@@ -79,7 +79,7 @@ Sistema a 8px con variabili CSS personalizzate per consistenza.
    - Mantieni la formattazione con h2, h3, p, ul, blockquote
 
 4. **Aggiorna i link**:
-   - Aggiungi il link nell'indice del blog (`./blog/index.html`)
+   - Aggiungi il link nell'indice del blog (`./blog/`)
    - Aggiorna la homepage se necessario
    - Aggiorna `sitemap.xml`
 
