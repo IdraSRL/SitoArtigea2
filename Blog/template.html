@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} - Blog Artigea</title>
+    <meta name="description" content="{{description}}">
+    <meta name="keywords" content="{{keywords}}">
+    <meta name="author" content="Artigea s.r.l.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.artigea.com/./blog/{{slug}}.html">
+    <meta property="og:title" content="{{title}}">
+    <meta property="og:description" content="{{description}}">
+    <meta property="og:image" content="../assets/./blog/{{slug}}-og.jpg">
+    <meta property="article:published_time" content="{{published_date}}">
+    <meta property="article:author" content="Artigea s.r.l.">
+    <meta property="article:section" content="{{category}}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.artigea.com/./blog/{{slug}}.html">
+    <meta property="twitter:title" content="{{title}}">
+    <meta property="twitter:description" content="{{description}}">
+    <meta property="twitter:image" content="../assets/./blog/{{slug}}-og.jpg">
+
+    <!-- Favicon -->
+<link rel="shortcut icon" href="../img/logo.svg" type="image/x-icon">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.artigea.com/./blog/{{slug}}.html">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/blog.css">
+
+    <!-- Google Analytics GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID', {
+            'anonymize_ip': true,
+            'cookie_flags': 'max-age=7200;secure;samesite=none'
+        });
+    </script>
+
+    <!-- JSON-LD Article Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "{{title}}",
+        "description": "{{description}}",
+        "image": "https://www.artigea.com/assets/./blog/{{slug}}-cover.jpg",
+        "author": {
+            "@type": "Organization",
+            "name": "Artigea s.r.l.",
+            "url": "https://www.artigea.com"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Artigea s.r.l.",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.artigea.com/assets/logo-artigea.svg"
+            }
+        },
+        "datePublished": "{{published_date}}",
+        "dateModified": "{{modified_date}}",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://www.artigea.com/./blog/{{slug}}.html"
+        },
+        "articleSection": "{{category}}",
+        "keywords": "{{keywords}}"
+    }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav__brand">
+                <a href="../index.html">
+                    <img src=".././img/logo.svg" alt="Logo Artigea s.r.l. - Pulizie Professionali Pisa" class="nav__logo">
+                </a>
+            </div>
+            <ul class="nav__menu" id="nav-menu">
+                <li class="nav__item">
+                    <a href="../index.html" class="nav__link">Home</a>
+                </li>
+                <li class="nav__item">
+                    <a href="../index.html#chi-siamo" class="nav__link">Chi Siamo</a>
+                </li>
+                <li class="nav__item">
+                    <a href="../index.html#servizi" class="nav__link">Servizi</a>
+                </li>
+                <li class="nav__item">
+                    <a href="../index.html#lavora-con-noi" class="nav__link">Lavora con Noi</a>
+                </li>
+                <li class="nav__item">
+                    <a href="index.html" class="nav__link active">Blog</a>
+                </li>
+                <li class="nav__item">
+                    <a href="../index.html#contatti" class="nav__link">Contatti</a>
+                </li>
+                <li class="nav__item">
+                    <a href="tel:+393462319824" class="nav__link nav__phone">
+                        <span class="phone-icon">📞</span>
+                        346 231 9824
+                    </a>
+                </li>
+            </ul>
+            <div class="nav__toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="blog-post">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb container" aria-label="Percorso">
+            <ol class="breadcrumb__list">
+                <li class="breadcrumb__item">
+                    <a href="../index.html" class="breadcrumb__link">Home</a>
+                </li>
+                <li class="breadcrumb__item">
+                    <a href="index.html" class="breadcrumb__link">Blog</a>
+                </li>
+                <li class="breadcrumb__item breadcrumb__item--current" aria-current="page">
+                    {{title}}
+                </li>
+            </ol>
+        </nav>
+
+        <!-- Article Header -->
+        <header class="article-header">
+            <div class="container">
+                <div class="article-meta">
+                    <span class="article-category">{{category}}</span>
+                    <time class="article-date" datetime="{{published_date}}">{{published_date_formatted}}</time>
+                    <span class="article-reading-time">{{reading_time}} min di lettura</span>
+                </div>
+                <h1 class="article-title">{{title}}</h1>
+                <p class="article-excerpt">{{excerpt}}</p>
+                
+                <!-- Featured Image -->
+                <div class="article-image">
+                    <img src=".././img/logo.svg" alt="{{title}}" loading="eager" class="article-featured-image">
+                </div>
+            </div>
+        </header>
+
+        <!-- Article Content -->
+        <article class="article-content">
+            <div class="container">
+                <div class="article-body">
+                    <!-- CONTENT PLACEHOLDER - Replace with actual article content -->
+                    <p>Questo è il template base per gli articoli del blog. Sostituisci questo contenuto con il testo dell'articolo.</p>
+                    
+                    <h2>Esempio di Sottotitolo</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    
+                    <h3>Sottosezione</h3>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    
+                    <ul>
+                        <li>Punto elenco 1</li>
+                        <li>Punto elenco 2</li>
+                        <li>Punto elenco 3</li>
+                    </ul>
+                    
+                    <blockquote class="article-quote">
+                        "Citazione di esempio per evidenziare concetti importanti nell'articolo."
+                    </blockquote>
+                    
+                    <p>Continua con il resto del contenuto dell'articolo...</p>
+                    <!-- END CONTENT PLACEHOLDER -->
+                </div>
+
+                <!-- Article Sidebar -->
+                <aside class="article-sidebar">
+                    <!-- Author Info -->
+                    <div class="author-card">
+                        <div class="author-info">
+                            <h3>Artigea s.r.l.</h3>
+                            <p>Esperti in servizi di pulizia professionale a Pisa e provincia. Condividiamo consigli utili per la pulizia e l'igiene.</p>
+                        </div>
+                    </div>
+
+                    <!-- Contact CTA -->
+                    <div class="sidebar-cta">
+                        <h3>Hai bisogno di pulizie professionali?</h3>
+                        <p>Contattaci per un preventivo gratuito</p>
+                        <a href="../index.html#contatti" class="btn btn--primary">Richiedi Preventivo</a>
+                        <a href="tel:+393462319824" class="btn btn--outline">
+                            <span class="btn__icon">📞</span>
+                            346 231 9824
+                        </a>
+                    </div>
+
+                    <!-- Share Buttons -->
+                    <div class="share-buttons">
+                        <h4>Condividi questo articolo</h4>
+                        <div class="share-buttons__list">
+                            <a href="#" class="share-btn share-btn--facebook" onclick="shareOnFacebook()">
+                                Facebook
+                            </a>
+                            <a href="#" class="share-btn share-btn--twitter" onclick="shareOnTwitter()">
+                                Twitter
+                            </a>
+                            <a href="#" class="share-btn share-btn--linkedin" onclick="shareOnLinkedIn()">
+                                LinkedIn
+                            </a>
+                            <a href="#" class="share-btn share-btn--whatsapp" onclick="shareOnWhatsApp()">
+                                WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </article>
+
+        <!-- Related Articles -->
+        <section class="related-articles">
+            <div class="container">
+                <h2 class="section__title">Articoli Correlati</h2>
+                <div class="blog__grid">
+                    <!-- Placeholder for related articles - populate dynamically -->
+                    <article class="blog-card">
+                        <img src=".././img/logo.svg" alt="Articolo correlato" class="blog-card__image" loading="lazy">
+                        <div class="blog-card__content">
+                            <span class="blog-card__category">Guide</span>
+                            <h3 class="blog-card__title">
+                                <a href="#">Titolo Articolo Correlato</a>
+                            </h3>
+                            <p class="blog-card__excerpt">
+                                Breve descrizione dell'articolo correlato...
+                            </p>
+                            <time class="blog-card__date" datetime="2024-03-15">15 Marzo 2024</time>
+                            <time class="blog-card__date" datetime="2025-03-15">15 Marzo 2025</time>
+                        </div>
+                    </article>
+                    
+                    <article class="blog-card">
+                        <img src=".././img/logo.svg" alt="Articolo correlato" class="blog-card__image" loading="lazy">
+                        <div class="blog-card__content">
+                            <span class="blog-card__category">Consigli</span>
+                            <h3 class="blog-card__title">
+                                <a href="#">Altro Articolo Correlato</a>
+                            </h3>
+                            <p class="blog-card__excerpt">
+                                Altra breve descrizione...
+                            </p>
+                            <time class="blog-card__date" datetime="2024-03-10">10 Marzo 2024</time>
+                            <time class="blog-card__date" datetime="2025-03-10">10 Marzo 2025</time>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="blog__cta">
+                    <a href="index.html" class="btn btn--outline">Vedi tutti gli articoli</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <img src="../img/LogoCompleto.png" alt="Logo Artigea s.r.l." class="footer__logo">
+                    <p>Servizi di pulizia professionali a Pisa e provincia</p>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__column">
+                        <h4>Servizi</h4>
+                        <ul>
+                            <li><a href="../index.html#servizi">Pulizie Civili</a></li>
+                            <li><a href="../index.html#servizi">Pulizie Industriali</a></li>
+                            <li><a href="../index.html#servizi">Sanificazioni</a></li>
+                            <li><a href="../index.html#servizi">Pulizie Vetri</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__column">
+                        <h4>Azienda</h4>
+                        <ul>
+                            <li><a href="../index.html#chi-siamo">Chi Siamo</a></li>
+                            <li><a href="../index.html#lavora-con-noi">Lavora con Noi</a></li>
+                            <li><a href="index.html">Blog</a></li>
+                            <li><a href="../index.html#contatti">Contatti</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__column">
+                        <h4>Legale</h4>
+                        <ul>
+                            <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="../cookie-policy.html">Cookie Policy</a></li>
+                            <li><a href="../note-legali.html">Note Legali</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <div class="footer__info">
+                    <p><strong>Artigea s.r.l.</strong> - P.IVA/C.F. 02522330541</p>
+                    <p>Sede legale: Via Polidori 14, 56032 Bientina (PI) - Sede operativa: Via Amedeo Modigliani 32, 56010 Vicopisano (PI)</p>
+                    <p>Tel: <a href="tel:+393462319824">346 231 9824</a> - Email: <a href="mailto:info@artigea.it">info@artigea.it</a></p>
+                </div>
+                <div class="footer__badges">
+                    <span class="professional-badge professional-badge--gdpr">
+                        <span class="badge-icon">🔒</span>
+                        GDPR Compliant
+                    </span>
+                    <span class="professional-badge professional-badge--iso">
+                        <span class="badge-icon">📋</span>
+                        ISO 9001
+                    </span>
+                    <span class="professional-badge professional-badge--haccp">
+                        <span class="badge-icon">🧪</span>
+                        HACCP Certified
+                    </span>
+                    <span class="professional-badge professional-badge--covid">
+                        <span class="badge-icon">🦠</span>
+                        COVID-19 Protocol
+                    </span>
+                    <span class="professional-badge professional-badge--eco">
+                        <span class="badge-icon">🌱</span>
+                        Eco-Friendly
+                    </span>
+                    <span class="professional-badge professional-badge--certified">
+                        <span class="badge-icon">✓</span>
+                        Certified Company
+                    </span>
+                    <span class="professional-badge professional-badge--insurance">
+                        <span class="badge-icon">🛡️</span>
+                        Fully Insured
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="cookie-banner">
+        <div class="cookie-banner__content">
+            <p>
+                Questo sito utilizza cookie tecnici e di analytics per migliorare l'esperienza utente. 
+                I dati vengono raccolti in forma anonima per analisi statistiche.
+            </p>
+            <div class="cookie-banner__actions">
+                <button id="accept-cookies" class="btn btn--primary">Accetta</button>
+                <a href="../cookie-policy.html" class="btn btn--outline">Scopri di più</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script src="../js/cookie-consent.js"></script>
+    <script src="../js/blog-filters.js"></script>
+    <script>
+        // Social sharing functions
+        function shareOnFacebook() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, 'facebook-share', 'width=580,height=400');
+        }
+
+        function shareOnTwitter() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${title}`, 'twitter-share', 'width=580,height=400');
+        }
+
+        function shareOnLinkedIn() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, 'linkedin-share', 'width=580,height=400');
+        }
+
+        function shareOnWhatsApp() {
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(document.title);
+            window.open(`https://api.whatsapp.com/send?text=${title}%20${url}`, 'whatsapp-share');
+        }
+
+        // Track article reading progress
+        document.addEventListener('DOMContentLoaded', function() {
+            const article = document.querySelector('.article-body');
+            if (!article) return;
+
+            let maxScroll = 0;
+            const trackingThresholds = [25, 50, 75, 100];
+            const trackedThresholds = new Set();
+
+            function trackReadingProgress() {
+                const articleTop = article.offsetTop;
+                const articleHeight = article.offsetHeight;
+                const windowHeight = window.innerHeight;
+                const scrollTop = window.pageYOffset;
+
+                const articleBottom = articleTop + articleHeight;
+                const viewportBottom = scrollTop + windowHeight;
+
+                if (scrollTop > articleTop && viewportBottom < articleBottom) {
+                    const progress = Math.round(((scrollTop - articleTop) / (articleHeight - windowHeight)) * 100);
+                    maxScroll = Math.max(maxScroll, Math.min(progress, 100));
+
+                    trackingThresholds.forEach(threshold => {
+                        if (maxScroll >= threshold && !trackedThresholds.has(threshold)) {
+                            trackedThresholds.add(threshold);
+                            
+                            // Track with cookie consent
+                            if (window.cookieConsent && window.cookieConsent.hasConsent()) {
+                                window.cookieConsent.trackEvent('article_reading_progress', {
+                                    progress_percentage: threshold,
+                                    article_title: document.title
+                                });
+                            }
+                        }
+                    });
+                }
+            }
+
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                if (scrollTimeout) {
+                    clearTimeout(scrollTimeout);
+                }
+                scrollTimeout = setTimeout(trackReadingProgress, 100);
+            });
+        });
+    </script>
+</body>
+</html>

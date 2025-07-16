@@ -1,0 +1,54 @@
+{
+    "name": "Artigea s.r.l. - Pulizie Professionali Pisa",
+    "short_name": "Artigea",
+    "description": "Servizi di pulizie professionali a Pisa e provincia. Pulizie civili, industriali, sanificazioni e vetri.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#1a1a1a",
+    "theme_color": "#a14e97",
+    "orientation": "portrait-primary",
+    "categories": ["business", "productivity", "utilities"],
+    "lang": "it",
+    "dir": "ltr",
+    "icons": [
+        {
+            "src": "favicon-16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        },
+        {
+            "src": "favicon-32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        },
+        {
+            "src": "android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "screenshot-desktop.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": "wide"
+        },
+        {
+            "src": "screenshot-mobile.png",
+            "sizes": "375x667",
+            "type": "image/png",
+            "form_factor": "narrow"
+        }
+    ]
+}
