@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galleria Prima e Dopo - Artigea s.r.l.</title>
+    <meta name="description" content="Scopri i risultati dei nostri servizi di pulizia professionale attraverso le immagini prima e dopo dei nostri interventi">
+    <meta name="keywords" content="pulizie prima dopo, risultati pulizie, galleria lavori, pulizie professionali Pisa">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./img/logo.svg" type="image/x-icon">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.artigea.it/gallery.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Galleria Prima e Dopo - Artigea s.r.l.">
+    <meta property="og:description" content="Scopri i risultati dei nostri servizi di pulizia professionale">
+    <meta property="og:image" content="https://www.artigea.it/assets/gallery-og.jpg">
+    <meta property="og:url" content="https://www.artigea.it/gallery.html">
+    <meta property="og:type" content="website">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/gallery.css">
+    <link rel="stylesheet" href="css/mobile-responsive.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav__brand">
+                <a href="index.html">
+                    <img src="./img/logo.svg" alt="Logo Artigea s.r.l. - Pulizie Professionali Pisa" class="nav__logo">
+                </a>
+            </div>
+            <ul class="nav__menu" id="nav-menu">
+                <li class="nav__item">
+                    <a href="index.html" class="nav__link">Home</a>
+                </li>
+                <li class="nav__item">
+                    <a href="index.html#chi-siamo" class="nav__link">Chi Siamo</a>
+                </li>
+                <li class="nav__item">
+                    <a href="index.html#servizi" class="nav__link">Servizi</a>
+                </li>
+                <li class="nav__item">
+                    <a href="index.html#lavora-con-noi" class="nav__link">Lavora con Noi</a>
+                </li>
+                <li class="nav__item">
+                    <a href="./blog/" class="nav__link">Blog</a>
+                </li>
+                <li class="nav__item">
+                    <a href="gallery.html" class="nav__link active">Galleria</a>
+                </li>
+                <li class="nav__item">
+                    <a href="index.html#contatti" class="nav__link">Contatti</a>
+                </li>
+                <li class="nav__item">
+                    <a href="tel:+393462319824" class="nav__link nav__phone">
+                        <span class="phone-icon">📞</span>
+                        346 231 9824
+                    </a>
+                </li>
+            </ul>
+            <div class="nav__toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="gallery-page">
+        <!-- Hero Section -->
+        <section class="gallery-hero">
+            <div class="container">
+                <div class="gallery-hero__content">
+                    <h1 class="gallery-hero__title">I Nostri Risultati</h1>
+                    <p class="gallery-hero__description">
+                        Scopri la qualità del nostro lavoro attraverso le immagini prima e dopo dei nostri interventi di pulizia professionale
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Filters -->
+        <section class="gallery-filters-section">
+            <div class="container">
+                <div class="gallery__filters" id="gallery-filters">
+                    <button class="gallery__filter active" data-filter="all" aria-label="Mostra tutti i lavori">
+                        <i class="fas fa-th"></i>
+                        Tutti i Lavori
+                    </button>
+                    <button class="gallery__filter" data-filter="civili" aria-label="Filtra pulizie civili">
+                        <i class="fas fa-home"></i>
+                        Pulizie Civili
+                    </button>
+                    <button class="gallery__filter" data-filter="industriali" aria-label="Filtra pulizie industriali">
+                        <i class="fas fa-industry"></i>
+                        Pulizie Industriali
+                    </button>
+                    <button class="gallery__filter" data-filter="sanificazione" aria-label="Filtra sanificazioni">
+                        <i class="fas fa-spray-can"></i>
+                        Sanificazioni
+                    </button>
+                    <button class="gallery__filter" data-filter="vetri" aria-label="Filtra pulizie vetri">
+                        <i class="fas fa-window-maximize"></i>
+                        Pulizie Vetri
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Grid -->
+        <section class="gallery">
+            <div class="container">
+                <div class="gallery__grid" id="gallery-grid">
+                    <!-- Gli elementi della galleria verranno inseriti dinamicamente da JavaScript -->
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state" id="empty-state">
+                    <i class="fas fa-search"></i>
+                    <h3>Nessun risultato trovato</h3>
+                    <p>Non ci sono immagini per questa categoria al momento.</p>
+                    <button class="btn btn--primary" onclick="clearGalleryFilter()">Mostra tutti i lavori</button>
+                </div>
+
+                <!-- Loading State -->
+                <div class="loading-state" id="loading-state">
+                    <div class="loading-spinner"></div>
+                    <p>Caricamento galleria...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="gallery-cta">
+            <div class="container">
+                <div class="gallery__cta">
+                    <h3>Vuoi risultati come questi?</h3>
+                    <p>
+                        Contattaci per un preventivo gratuito e scopri come possiamo trasformare 
+                        i tuoi spazi con i nostri servizi di pulizia professionale
+                    </p>
+                    <div class="gallery__cta-actions">
+                        <a href="index.html#contatti" class="btn btn--primary">
+                            <i class="fas fa-envelope"></i>
+                            Richiedi Preventivo
+                        </a>
+                        <a href="tel:+393462319824" class="btn btn--outline">
+                            <i class="fas fa-phone"></i>
+                            346 231 9824
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <img src="img/LogoCompleto.png" alt="Logo Artigea s.r.l." class="footer__logo">
+                    <p>Servizi di pulizia professionali a Pisa e provincia</p>
+                    
+                    <!-- Social Media Links -->
+                    <div class="footer__social">
+                        <a href="https://www.instagram.com/artigeasrl/" target="_blank" rel="noopener noreferrer" aria-label="Seguici su Instagram">
+                            <span style="color: #C32AA3;">
+                                <i class="fab fa-instagram"></i>
+                            </span>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61578224947960" target="_blank" rel="noopener noreferrer" aria-label="Seguici su Facebook">
+                            <span style="color: #1877F2;">
+                                <i class="fab fa-facebook-f"></i>
+                            </span>
+                        </a>
+                        <a href="https://www.linkedin.com/company/artigea-srl" target="_blank" rel="noopener noreferrer" aria-label="Collegati su LinkedIn">
+                            <span style="color: #0A66C2;">
+                                <i class="fab fa-linkedin-in"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__column">
+                        <h4>Servizi</h4>
+                        <ul>
+                            <li><a href="index.html#servizi">Pulizie Civili</a></li>
+                            <li><a href="index.html#servizi">Pulizie Industriali</a></li>
+                            <li><a href="index.html#servizi">Sanificazioni</a></li>
+                            <li><a href="index.html#servizi">Pulizie Vetri</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__column">
+                        <h4>Azienda</h4>
+                        <ul>
+                            <li><a href="index.html#chi-siamo">Chi Siamo</a></li>
+                            <li><a href="index.html#lavora-con-noi">Lavora con Noi</a></li>
+                            <li><a href="./blog/">Blog</a></li>
+                            <li><a href="index.html#contatti">Contatti</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__column">
+                        <h4>Legale</h4>
+                        <ul>
+                            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                            <li><a href="cookie-policy.html">Cookie Policy</a></li>
+                            <li><a href="note-legali.html">Note Legali</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <div class="footer__info">
+                    <p><strong>Artigea s.r.l.</strong> - P.IVA/C.F. 02522330541</p>
+                    <p>Sede legale: Via Polidori 14, 56032 Bientina (PI) - Sede operativa: Via Amedeo Modigliani 32, 56010 Vicopisano (PI)</p>
+                    <p>Tel: <a href="tel:+393462319824">346 231 9824</a> - Email: <a href="mailto:info@artigea.it">info@artigea.it</a></p>
+                </div>
+                <div class="footer__badges">
+                    <span class="professional-badge professional-badge--gdpr">
+                        <span class="badge-icon">🔒</span>
+                        GDPR Compliant
+                    </span>
+                    <span class="professional-badge professional-badge--iso">
+                        <span class="badge-icon">📋</span>
+                        ISO 9001
+                    </span>
+                    <span class="professional-badge professional-badge--haccp">
+                        <span class="badge-icon">🧪</span>
+                        HACCP Certified
+                    </span>
+                    <span class="professional-badge professional-badge--covid">
+                        <span class="badge-icon">🦠</span>
+                        COVID-19 Protocol
+                    </span>
+                    <span class="professional-badge professional-badge--eco">
+                        <span class="badge-icon">🌱</span>
+                        Eco-Friendly
+                    </span>
+                    <span class="professional-badge professional-badge--certified">
+                        <span class="badge-icon">✓</span>
+                        Certified Company
+                    </span>
+                    <span class="professional-badge professional-badge--insurance">
+                        <span class="badge-icon">🛡️</span>
+                        Fully Insured
+                    </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="cookie-banner">
+        <div class="cookie-banner__content">
+            <p>
+                Questo sito utilizza cookie tecnici e di analytics per migliorare l'esperienza utente. 
+                I dati vengono raccolti in forma anonima per analisi statistiche.
+            </p>
+            <div class="cookie-banner__actions">
+                <button id="accept-cookies" class="btn btn--primary">Accetta</button>
+                <a href="cookie-policy.html" class="btn btn--outline">Scopri di più</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/cookie-consent.js"></script>
+    <script src="js/gallery.js"></script>
+</body>
+</html>
