@@ -199,25 +199,18 @@ class GalleryManager {
         let isDragging = false;
         let animationFrame = null;
 
-        const updateSlider = (x, immediate = false) => {
+        const updateSlider = (x) => {
             const rect = slider.getBoundingClientRect();
             const position = Math.max(0, Math.min(1, (x - rect.left) / rect.width));
             const percentage = position * 100;
             
-            // Use transform instead of clip-path for better performance
-            if (immediate) {
-                afterImage.style.transform = `translateX(-${100 - percentage}%)`;
-                handle.style.transform = `translateX(${percentage * (rect.width / 100) - 2}px)`;
-            } else {
-                // Use requestAnimationFrame for smooth animation
-                if (animationFrame) {
-                    cancelAnimationFrame(animationFrame);
-                }
-                animationFrame = requestAnimationFrame(() => {
-                    afterImage.style.transform = `translateX(-${100 - percentage}%)`;
-                    handle.style.transform = `translateX(${percentage * (rect.width / 100) - 2}px)`;
-                });
-            }
+            // Use clip-path to create the masking effect
+            // The after image is clipped from left to the slider position
+            afterImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+            
+            // Position the handle at the correct location
+            handle.style.left = `${percentage}%`;
+            handle.style.transform = 'translateX(-50%)';
             
             // Update ARIA value
             slider.setAttribute('aria-valuenow', Math.round(percentage));
@@ -225,16 +218,17 @@ class GalleryManager {
 
         // Initialize slider position
         const initializeSlider = () => {
-            const rect = slider.getBoundingClientRect();
-            afterImage.style.transform = 'translateX(-50%)';
-            handle.style.transform = `translateX(${rect.width / 2 - 2}px)`;
+            // Start with 50% visibility of after image
+            afterImage.style.clipPath = 'inset(0 50% 0 0)';
+            handle.style.left = '50%';
+            handle.style.transform = 'translateX(-50%)';
             slider.setAttribute('aria-valuenow', '50');
         };
 
         // Mouse events
         slider.addEventListener('mousedown', (e) => {
             isDragging = true;
-            updateSlider(e.clientX, true);
+            updateSlider(e.clientX);
             slider.style.cursor = 'ew-resize';
             slider.classList.add('dragging');
             e.preventDefault();
@@ -242,7 +236,7 @@ class GalleryManager {
 
         document.addEventListener('mousemove', (e) => {
             if (isDragging) {
-                updateSlider(e.clientX, true);
+                updateSlider(e.clientX);
             }
         });
 
@@ -264,14 +258,14 @@ class GalleryManager {
         slider.addEventListener('touchstart', (e) => {
             isDragging = true;
             const touch = e.touches[0];
-            updateSlider(touch.clientX, true);
+            updateSlider(touch.clientX);
             e.preventDefault();
         });
 
         document.addEventListener('touchmove', (e) => {
             if (isDragging) {
                 const touch = e.touches[0];
-                updateSlider(touch.clientX, true);
+                updateSlider(touch.clientX);
                 e.preventDefault();
             }
         });
@@ -291,7 +285,7 @@ class GalleryManager {
         // Click to position
         slider.addEventListener('click', (e) => {
             if (!isDragging) {
-                updateSlider(e.clientX, true);
+                updateSlider(e.clientX);
                 
                 this.trackEvent('before_after_interaction', {
                     action: 'click',
@@ -307,26 +301,28 @@ class GalleryManager {
 
             switch(e.key) {
                 case 'ArrowLeft':
-                    newLeft = Math.max(0, currentValue - 5);
+                    newValue = Math.max(0, currentValue - 5);
                     break;
                 case 'ArrowRight':
-                    newLeft = Math.min(100, currentValue + 5);
+                    newValue = Math.min(100, currentValue + 5);
                     break;
                 case 'Home':
-                    newLeft = 0;
+                    newValue = 0;
                     break;
                 case 'End':
-                    newLeft = 100;
+                    newValue = 100;
                     break;
                 default:
                     return;
             }
 
             e.preventDefault();
-            const rect = slider.getBoundingClientRect();
-            afterImage.style.transform = `translateX(-${100 - newLeft}%)`;
-            handle.style.transform = `translateX(${newLeft * (rect.width / 100) - 2}px)`;
-            slider.setAttribute('aria-valuenow', Math.round(newLeft));
+            
+            // Apply the new clipping
+            afterImage.style.clipPath = `inset(0 ${100 - newValue}% 0 0)`;
+            handle.style.left = `${newValue}%`;
+            handle.style.transform = 'translateX(-50%)';
+            slider.setAttribute('aria-valuenow', Math.round(newValue));
         });
 
         // Initialize slider on load
@@ -335,6 +331,9 @@ class GalleryManager {
         } else {
             slider.addEventListener('load', initializeSlider);
         }
+        
+        // Initialize immediately for better UX
+        setTimeout(initializeSlider, 100);
 
         // Make slider focusable for keyboard navigation
         slider.setAttribute('tabindex', '0');
@@ -345,13 +344,12 @@ class GalleryManager {
 
         // Handle window resize
         window.addEventListener('resize', () => {
-            if (animationFrame) {
-                cancelAnimationFrame(animationFrame);
-            }
             const currentValue = parseInt(slider.getAttribute('aria-valuenow')) || 50;
-            const rect = slider.getBoundingClientRect();
-            afterImage.style.transform = `translateX(-${100 - currentValue}%)`;
-            handle.style.transform = `translateX(${currentValue * (rect.width / 100) - 2}px)`;
+            
+            // Reapply clipping after resize
+            afterImage.style.clipPath = `inset(0 ${100 - currentValue}% 0 0)`;
+            handle.style.left = `${currentValue}%`;
+            handle.style.transform = 'translateX(-50%)';
         });
     }
 
