@@ -197,30 +197,52 @@ class GalleryManager {
         const afterImage = slider.querySelector('.after-image');
         const handle = slider.querySelector('.slider-handle');
         let isDragging = false;
+        let animationFrame = null;
 
-        const updateSlider = (x) => {
+        const updateSlider = (x, immediate = false) => {
             const rect = slider.getBoundingClientRect();
             const position = Math.max(0, Math.min(1, (x - rect.left) / rect.width));
             const percentage = position * 100;
             
-            afterImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
-            handle.style.left = `${percentage}%`;
+            // Use transform instead of clip-path for better performance
+            if (immediate) {
+                afterImage.style.transform = `translateX(-${100 - percentage}%)`;
+                handle.style.transform = `translateX(${percentage * (rect.width / 100) - 2}px)`;
+            } else {
+                // Use requestAnimationFrame for smooth animation
+                if (animationFrame) {
+                    cancelAnimationFrame(animationFrame);
+                }
+                animationFrame = requestAnimationFrame(() => {
+                    afterImage.style.transform = `translateX(-${100 - percentage}%)`;
+                    handle.style.transform = `translateX(${percentage * (rect.width / 100) - 2}px)`;
+                });
+            }
             
             // Update ARIA value
             slider.setAttribute('aria-valuenow', Math.round(percentage));
         };
 
+        // Initialize slider position
+        const initializeSlider = () => {
+            const rect = slider.getBoundingClientRect();
+            afterImage.style.transform = 'translateX(-50%)';
+            handle.style.transform = `translateX(${rect.width / 2 - 2}px)`;
+            slider.setAttribute('aria-valuenow', '50');
+        };
+
         // Mouse events
         slider.addEventListener('mousedown', (e) => {
             isDragging = true;
-            updateSlider(e.clientX);
+            updateSlider(e.clientX, true);
             slider.style.cursor = 'ew-resize';
+            slider.classList.add('dragging');
             e.preventDefault();
         });
 
         document.addEventListener('mousemove', (e) => {
             if (isDragging) {
-                updateSlider(e.clientX);
+                updateSlider(e.clientX, true);
             }
         });
 
@@ -228,6 +250,7 @@ class GalleryManager {
             if (isDragging) {
                 isDragging = false;
                 slider.style.cursor = 'ew-resize';
+                slider.classList.remove('dragging');
                 
                 // Track interaction
                 this.trackEvent('before_after_interaction', {
@@ -241,14 +264,14 @@ class GalleryManager {
         slider.addEventListener('touchstart', (e) => {
             isDragging = true;
             const touch = e.touches[0];
-            updateSlider(touch.clientX);
+            updateSlider(touch.clientX, true);
             e.preventDefault();
         });
 
         document.addEventListener('touchmove', (e) => {
             if (isDragging) {
                 const touch = e.touches[0];
-                updateSlider(touch.clientX);
+                updateSlider(touch.clientX, true);
                 e.preventDefault();
             }
         });
@@ -256,6 +279,7 @@ class GalleryManager {
         document.addEventListener('touchend', () => {
             if (isDragging) {
                 isDragging = false;
+                slider.classList.remove('dragging');
                 
                 this.trackEvent('before_after_interaction', {
                     action: 'touch',
@@ -267,7 +291,7 @@ class GalleryManager {
         // Click to position
         slider.addEventListener('click', (e) => {
             if (!isDragging) {
-                updateSlider(e.clientX);
+                updateSlider(e.clientX, true);
                 
                 this.trackEvent('before_after_interaction', {
                     action: 'click',
@@ -278,15 +302,15 @@ class GalleryManager {
 
         // Keyboard accessibility
         slider.addEventListener('keydown', (e) => {
-            const currentLeft = parseFloat(handle.style.left) || 50;
-            let newLeft = currentLeft;
+            const currentValue = parseInt(slider.getAttribute('aria-valuenow')) || 50;
+            let newLeft = currentValue;
 
             switch(e.key) {
                 case 'ArrowLeft':
-                    newLeft = Math.max(0, currentLeft - 5);
+                    newLeft = Math.max(0, currentValue - 5);
                     break;
                 case 'ArrowRight':
-                    newLeft = Math.min(100, currentLeft + 5);
+                    newLeft = Math.min(100, currentValue + 5);
                     break;
                 case 'Home':
                     newLeft = 0;
@@ -299,9 +323,35 @@ class GalleryManager {
             }
 
             e.preventDefault();
-            afterImage.style.clipPath = `inset(0 ${100 - newLeft}% 0 0)`;
-            handle.style.left = `${newLeft}%`;
+            const rect = slider.getBoundingClientRect();
+            afterImage.style.transform = `translateX(-${100 - newLeft}%)`;
+            handle.style.transform = `translateX(${newLeft * (rect.width / 100) - 2}px)`;
             slider.setAttribute('aria-valuenow', Math.round(newLeft));
+        });
+
+        // Initialize slider on load
+        if (slider.complete || slider.readyState === 'complete') {
+            initializeSlider();
+        } else {
+            slider.addEventListener('load', initializeSlider);
+        }
+
+        // Make slider focusable for keyboard navigation
+        slider.setAttribute('tabindex', '0');
+        slider.setAttribute('role', 'slider');
+        slider.setAttribute('aria-valuemin', '0');
+        slider.setAttribute('aria-valuemax', '100');
+        slider.setAttribute('aria-valuenow', '50');
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (animationFrame) {
+                cancelAnimationFrame(animationFrame);
+            }
+            const currentValue = parseInt(slider.getAttribute('aria-valuenow')) || 50;
+            const rect = slider.getBoundingClientRect();
+            afterImage.style.transform = `translateX(-${100 - currentValue}%)`;
+            handle.style.transform = `translateX(${currentValue * (rect.width / 100) - 2}px)`;
         });
     }
 

@@ -153,6 +153,11 @@
     cursor: ew-resize;
     user-select: none;
     background: var(--color-dark-lighter);
+    will-change: transform;
+}
+
+.before-after-slider.dragging {
+    cursor: ew-resize !important;
 }
 
 .before-image,
@@ -162,6 +167,7 @@
     left: 0;
     width: 100%;
     height: 100%;
+    will-change: transform;
 }
 
 .before-image img,
@@ -170,11 +176,21 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    pointer-events: none;
 }
 
 .after-image {
-    clip-path: inset(0 50% 0 0);
-    transition: clip-path 0.3s ease;
+    transform: translateX(-50%);
+    transition: none;
+    overflow: hidden;
+}
+
+.before-after-slider:not(.dragging) .after-image {
+    transition: transform 0.1s ease-out;
+}
+
+.before-after-slider:not(.dragging) .slider-handle {
+    transition: transform 0.1s ease-out;
 }
 
 .image-label {
@@ -201,25 +217,27 @@
 .slider-handle {
     position: absolute;
     top: 0;
-    left: 50%;
+    left: 0;
     width: 4px;
     height: 100%;
     background: var(--color-primary);
-    transform: translateX(-50%);
+    transform: translateX(calc(50% - 2px));
     z-index: 3;
     cursor: ew-resize;
     box-shadow: 0 0 10px rgba(161, 78, 151, 0.5);
+    will-change: transform;
+    pointer-events: none;
 }
 
 .slider-button {
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 2px;
     width: 40px;
     height: 40px;
     background: var(--color-primary);
     border-radius: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -227,17 +245,35 @@
     box-shadow: var(--shadow-lg);
     transition: all var(--transition-fast);
     cursor: ew-resize;
+    pointer-events: none;
 }
 
 .slider-button:hover {
     background: var(--color-secondary);
-    transform: translate(-50%, -50%) scale(1.1);
+    transform: translateY(-50%) scale(1.1);
 }
 
 .slider-button::before {
     content: '⟷';
     font-size: var(--font-size-lg);
     font-weight: bold;
+}
+
+/* Performance optimizations */
+.before-after-slider,
+.before-image,
+.after-image,
+.slider-handle {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+}
+
+/* Smooth dragging cursor */
+.before-after-slider.dragging * {
+    cursor: ew-resize !important;
+    pointer-events: none;
 }
 
 /* Gallery Item Info */
@@ -487,6 +523,7 @@
     .slider-button {
         width: 35px;
         height: 35px;
+        left: 1px;
     }
     
     .image-label {
@@ -548,7 +585,8 @@
 @media (prefers-reduced-motion: reduce) {
     .gallery__item,
     .after-image,
-    .slider-button {
+    .slider-button,
+    .slider-handle {
         transition: none;
     }
     
@@ -558,6 +596,11 @@
     
     .loading-spinner {
         animation: none;
+    }
+    
+    .before-after-slider:not(.dragging) .after-image,
+    .before-after-slider:not(.dragging) .slider-handle {
+        transition: none;
     }
 }
 
