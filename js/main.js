@@ -15,6 +15,7 @@ class ArtigeaWebsite {
         this.setupFAQ();
         this.setupServiceTracking();
         this.setupPerformanceMonitoring();
+        // this.setupBeforeAfterGallery(); // Uncomment when gallery is enabled
     }
 
     setupServiceTracking() {
@@ -534,6 +535,167 @@ class ArtigeaWebsite {
             images.forEach(img => imageObserver.observe(img));
         }
     }
+
+    // Before/After Gallery functionality - COMMENTED OUT
+    /*
+    setupBeforeAfterGallery() {
+        const filters = document.querySelectorAll('.gallery__filter');
+        const galleryItems = document.querySelectorAll('.gallery__item');
+        const sliders = document.querySelectorAll('.before-after-slider');
+
+        // Setup filter functionality
+        filters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                const category = filter.dataset.filter;
+                this.filterGalleryItems(category, filters, galleryItems);
+                
+                if (window.cookieConsent && window.cookieConsent.hasConsent('analytics')) {
+                    window.cookieConsent.trackEvent('gallery_filter_used', {
+                        category: category,
+                        items_shown: this.getVisibleGalleryItems(galleryItems).length
+                    });
+                }
+            });
+        });
+
+        // Setup before/after sliders
+        sliders.forEach(slider => {
+            this.setupBeforeAfterSlider(slider);
+        });
+    }
+
+    filterGalleryItems(category, filters, items) {
+        // Update active filter
+        filters.forEach(filter => {
+            filter.classList.remove('active');
+            if (filter.dataset.filter === category) {
+                filter.classList.add('active');
+            }
+        });
+
+        // Add filtering class for animation
+        items.forEach(item => {
+            item.classList.add('filtering');
+        });
+
+        // Filter items after a short delay for smooth animation
+        setTimeout(() => {
+            items.forEach(item => {
+                const itemCategory = item.dataset.category;
+                const shouldShow = category === 'all' || itemCategory === category;
+                
+                item.classList.remove('filtering');
+                item.classList.toggle('hidden', !shouldShow);
+            });
+        }, 150);
+    }
+
+    setupBeforeAfterSlider(slider) {
+        const afterImage = slider.querySelector('.after-image');
+        const handle = slider.querySelector('.slider-handle');
+        let isDragging = false;
+
+        const updateSlider = (x) => {
+            const rect = slider.getBoundingClientRect();
+            const position = Math.max(0, Math.min(1, (x - rect.left) / rect.width));
+            const percentage = position * 100;
+            
+            afterImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+            handle.style.left = `${percentage}%`;
+        };
+
+        // Mouse events
+        slider.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            updateSlider(e.clientX);
+            slider.style.cursor = 'ew-resize';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                updateSlider(e.clientX);
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            slider.style.cursor = 'ew-resize';
+        });
+
+        // Touch events for mobile
+        slider.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            const touch = e.touches[0];
+            updateSlider(touch.clientX);
+            e.preventDefault();
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (isDragging) {
+                const touch = e.touches[0];
+                updateSlider(touch.clientX);
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+
+        // Click to position
+        slider.addEventListener('click', (e) => {
+            if (!isDragging) {
+                updateSlider(e.clientX);
+                
+                if (window.cookieConsent && window.cookieConsent.hasConsent('analytics')) {
+                    window.cookieConsent.trackEvent('before_after_interaction', {
+                        action: 'click',
+                        position: Math.round(((e.clientX - slider.getBoundingClientRect().left) / slider.getBoundingClientRect().width) * 100)
+                    });
+                }
+            }
+        });
+
+        // Keyboard accessibility
+        slider.addEventListener('keydown', (e) => {
+            const currentLeft = parseFloat(handle.style.left) || 50;
+            let newLeft = currentLeft;
+
+            switch(e.key) {
+                case 'ArrowLeft':
+                    newLeft = Math.max(0, currentLeft - 5);
+                    break;
+                case 'ArrowRight':
+                    newLeft = Math.min(100, currentLeft + 5);
+                    break;
+                case 'Home':
+                    newLeft = 0;
+                    break;
+                case 'End':
+                    newLeft = 100;
+                    break;
+                default:
+                    return;
+            }
+
+            e.preventDefault();
+            afterImage.style.clipPath = `inset(0 ${100 - newLeft}% 0 0)`;
+            handle.style.left = `${newLeft}%`;
+        });
+
+        // Make slider focusable for keyboard navigation
+        slider.setAttribute('tabindex', '0');
+        slider.setAttribute('role', 'slider');
+        slider.setAttribute('aria-label', 'Confronta prima e dopo');
+        slider.setAttribute('aria-valuemin', '0');
+        slider.setAttribute('aria-valuemax', '100');
+        slider.setAttribute('aria-valuenow', '50');
+    }
+
+    getVisibleGalleryItems(items) {
+        return Array.from(items).filter(item => !item.classList.contains('hidden'));
+    }
+    */
 }
 
 // Initialize when DOM is loaded

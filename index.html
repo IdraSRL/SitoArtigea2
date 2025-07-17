@@ -810,6 +810,229 @@
             </div>
         </section>
 
+        <!-- Before/After Gallery Section - COMMENTED OUT FOR NOW -->
+        <!--
+        <section id="galleria" class="gallery">
+            <div class="container">
+                <div class="section__header">
+                    <h2 class="section__title">I Nostri Lavori</h2>
+                    <p class="section__subtitle">
+                        Scopri la qualità del nostro lavoro attraverso le foto prima e dopo dei nostri interventi.
+                        Ogni progetto racconta una storia di professionalità e attenzione ai dettagli.
+                    </p>
+                </div>
+
+                <div class="gallery__filters">
+                    <button class="gallery__filter active" data-filter="all">Tutti i Lavori</button>
+                    <button class="gallery__filter" data-filter="civili">Pulizie Civili</button>
+                    <button class="gallery__filter" data-filter="industriali">Pulizie Industriali</button>
+                    <button class="gallery__filter" data-filter="vetri">Pulizie Vetri</button>
+                    <button class="gallery__filter" data-filter="sanificazione">Sanificazioni</button>
+                </div>
+
+                <div class="gallery__grid">
+                    <!-- Example Before/After Item 1 - Pulizie Civili -->
+                    <div class="gallery__item" data-category="civili">
+                        <div class="before-after-container">
+                            <div class="before-after-slider">
+                                <div class="before-image">
+                                    <img src="assets/before-after/cucina-prima.jpg" alt="Cucina prima della pulizia" loading="lazy">
+                                    <div class="image-label">Prima</div>
+                                </div>
+                                <div class="after-image">
+                                    <img src="assets/before-after/cucina-dopo.jpg" alt="Cucina dopo la pulizia" loading="lazy">
+                                    <div class="image-label">Dopo</div>
+                                </div>
+                                <div class="slider-handle">
+                                    <div class="slider-button">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2"/>
+                                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery__item-info">
+                                <h3>Pulizia Approfondita Cucina</h3>
+                                <p>Intervento di pulizia completa con sgrassaggio e sanificazione di tutti i piani di lavoro e elettrodomestici.</p>
+                                <div class="gallery__item-meta">
+                                    <span class="gallery__category">Pulizie Civili</span>
+                                    <span class="gallery__location">Pisa Centro</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Example Before/After Item 2 - Pulizie Industriali -->
+                    <div class="gallery__item" data-category="industriali">
+                        <div class="before-after-container">
+                            <div class="before-after-slider">
+                                <div class="before-image">
+                                    <img src="assets/before-after/ufficio-prima.jpg" alt="Ufficio prima della pulizia" loading="lazy">
+                                    <div class="image-label">Prima</div>
+                                </div>
+                                <div class="after-image">
+                                    <img src="assets/before-after/ufficio-dopo.jpg" alt="Ufficio dopo la pulizia" loading="lazy">
+                                    <div class="image-label">Dopo</div>
+                                </div>
+                                <div class="slider-handle">
+                                    <div class="slider-button">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2"/>
+                                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery__item-info">
+                                <h3>Pulizia Uffici Aziendali</h3>
+                                <p>Servizio di pulizia professionale per spazi di lavoro con particolare attenzione alle postazioni informatiche.</p>
+                                <div class="gallery__item-meta">
+                                    <span class="gallery__category">Pulizie Industriali</span>
+                                    <span class="gallery__location">Zona Industriale Pisa</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Example Before/After Item 3 - Pulizie Vetri -->
+                    <div class="gallery__item" data-category="vetri">
+                        <div class="before-after-container">
+                            <div class="before-after-slider">
+                                <div class="before-image">
+                                    <img src="assets/before-after/vetrate-prima.jpg" alt="Vetrate prima della pulizia" loading="lazy">
+                                    <div class="image-label">Prima</div>
+                                </div>
+                                <div class="after-image">
+                                    <img src="assets/before-after/vetrate-dopo.jpg" alt="Vetrate dopo la pulizia" loading="lazy">
+                                    <div class="image-label">Dopo</div>
+                                </div>
+                                <div class="slider-handle">
+                                    <div class="slider-button">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2"/>
+                                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery__item-info">
+                                <h3>Pulizia Vetrate Professionali</h3>
+                                <p>Intervento specializzato per la pulizia di grandi vetrate con tecniche professionali senza aloni.</p>
+                                <div class="gallery__item-meta">
+                                    <span class="gallery__category">Pulizie Vetri</span>
+                                    <span class="gallery__location">Vicopisano</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Example Before/After Item 4 - Sanificazione -->
+                    <div class="gallery__item" data-category="sanificazione">
+                        <div class="before-after-container">
+                            <div class="before-after-slider">
+                                <div class="before-image">
+                                    <img src="assets/before-after/bagno-prima.jpg" alt="Bagno prima della sanificazione" loading="lazy">
+                                    <div class="image-label">Prima</div>
+                                </div>
+                                <div class="after-image">
+                                    <img src="assets/before-after/bagno-dopo.jpg" alt="Bagno dopo la sanificazione" loading="lazy">
+                                    <div class="image-label">Dopo</div>
+                                </div>
+                                <div class="slider-handle">
+                                    <div class="slider-button">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2"/>
+                                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery__item-info">
+                                <h3>Sanificazione Completa Bagni</h3>
+                                <p>Trattamento di sanificazione approfondita con prodotti certificati per la massima igiene.</p>
+                                <div class="gallery__item-meta">
+                                    <span class="gallery__category">Sanificazioni</span>
+                                    <span class="gallery__location">Bientina</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Example Before/After Item 5 - Pulizie Civili -->
+                    <div class="gallery__item" data-category="civili">
+                        <div class="before-after-container">
+                            <div class="before-after-slider">
+                                <div class="before-image">
+                                    <img src="assets/before-after/soggiorno-prima.jpg" alt="Soggiorno prima della pulizia" loading="lazy">
+                                    <div class="image-label">Prima</div>
+                                </div>
+                                <div class="after-image">
+                                    <img src="assets/before-after/soggiorno-dopo.jpg" alt="Soggiorno dopo la pulizia" loading="lazy">
+                                    <div class="image-label">Dopo</div>
+                                </div>
+                                <div class="slider-handle">
+                                    <div class="slider-button">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2"/>
+                                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery__item-info">
+                                <h3>Pulizia Soggiorno e Zona Living</h3>
+                                <p>Servizio completo di pulizia per zone living con particolare attenzione a tappeti e imbottiti.</p>
+                                <div class="gallery__item-meta">
+                                    <span class="gallery__category">Pulizie Civili</span>
+                                    <span class="gallery__location">Cascina</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Example Before/After Item 6 - Pulizie Industriali -->
+                    <div class="gallery__item" data-category="industriali">
+                        <div class="before-after-container">
+                            <div class="before-after-slider">
+                                <div class="before-image">
+                                    <img src="assets/before-after/capannone-prima.jpg" alt="Capannone prima della pulizia" loading="lazy">
+                                    <div class="image-label">Prima</div>
+                                </div>
+                                <div class="after-image">
+                                    <img src="assets/before-after/capannone-dopo.jpg" alt="Capannone dopo la pulizia" loading="lazy">
+                                    <div class="image-label">Dopo</div>
+                                </div>
+                                <div class="slider-handle">
+                                    <div class="slider-button">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2"/>
+                                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gallery__item-info">
+                                <h3>Pulizia Capannone Industriale</h3>
+                                <p>Intervento di pulizia industriale per grandi spazi con macchinari specializzati.</p>
+                                <div class="gallery__item-meta">
+                                    <span class="gallery__category">Pulizie Industriali</span>
+                                    <span class="gallery__location">Pontedera</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery__cta">
+                    <h3>Vuoi vedere il tuo spazio trasformato?</h3>
+                    <p>Contattaci per un preventivo gratuito e scopri come possiamo migliorare i tuoi ambienti</p>
+                    <a href="#contatti" class="btn btn--primary">Richiedi Preventivo Gratuito</a>
+                </div>
+            </div>
+        </section>
+        -->
+
         <!-- Contact Section -->
         <section class="contact" id="contatti" aria-labelledby="contact-title">
             <div class="container">
